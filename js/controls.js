@@ -1,12 +1,15 @@
 THREE.PointerLockControls = function ( camera ) {
 	var speed;
 	var ws = new WebSocket('ws://localhost:8080');
-	
+
 	ws.onopen = function () {
 		console.log("web socket is open");
 	}
 
 	ws.onmessage = function(msg){
+		var sensorVals = msg.data.split(',');
+		var zoom = sensorVals[0];
+		var vel = sensorVals[1];
 		if(msg.data > 550) moveLeft = true;
 		else moveLeft = false;
 		if(msg.data < 470) moveRight = true;
