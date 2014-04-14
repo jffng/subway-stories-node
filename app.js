@@ -28,8 +28,8 @@ wss.on('connection', function(ws){
 });
 
 var serialPort = require('serialport');
+// Find the "comName" path that refers to the Arduino serial port connection
 // Replace this path with what's printed out in the 'comName:' of the terminal when you start the node app
-// Choose the path that refers to the Arduino serial port connection
 var myPortName = '/dev/cu.usbmodemfa131';
 
 var options = {
@@ -37,7 +37,7 @@ var options = {
 	parser: serialPort.parsers.readline('\r\n')
 }
 
-// Once you've added the correct name for the Serial port, uncomment the rest of this, and restart the server
+// Once you've added the correct name for the Serial port, uncomment lines 41 - 51, then restart the server
 // var myPort = new serialPort.SerialPort( myPortName, options );
 
 // myPort.on('open', function() {
