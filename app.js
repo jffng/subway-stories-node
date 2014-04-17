@@ -38,17 +38,17 @@ var options = {
 }
 
 // Once you've added the correct name for the Serial port, uncomment lines 41 - 51, then restart the server
-// var myPort = new serialPort.SerialPort( myPortName, options );
+var myPort = new serialPort.SerialPort( myPortName, options );
 
-// myPort.on('open', function() {
-// 	console.log('yay, serial port is open');
-// });
+myPort.on('open', function() {
+	console.log('yay, serial port is open');
+});
 
-// myPort.on('data', function(sensorVals){
-// 	if(mySocket){
-// 		mySocket.send(sensorVals);
-// 	}
-// });
+myPort.on('data', function(sensorVals){
+	if(mySocket){
+		mySocket.send(sensorVals);
+	}
+});
 
 serialPort.list( function (error, ports) {
 	console.log(ports);
