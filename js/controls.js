@@ -20,7 +20,7 @@ THREE.PointerLockControls = function ( camera ) {
 		else moveBackward = false;
 		if(zoom < 590) moveForward = true;
 		else moveForward = false;
-		speed = 5 * Math.abs( (vel-80) / 60000 - .005 );
+		speed = 7 * Math.abs( (vel-80) / 60000 - .005 );
 
 		window.onmousedown = function(){
 			console.log(zoom);
@@ -140,7 +140,7 @@ THREE.PointerLockControls = function ( camera ) {
 
 		if ( moveLeft ) {
 			if(camera.position.z < 1000){
-				acceleration.x -= speed*.3 * delta;
+				acceleration.x -= speed * delta;
 			}
 			else{
 				acceleration.x -= speed * delta;
@@ -149,7 +149,7 @@ THREE.PointerLockControls = function ( camera ) {
 
 		if ( moveRight ) {
 			if(camera.position.z < 1000){
-				acceleration.x += speed*.3 * delta;
+				acceleration.x += speed * delta;
 			}
 			else{
 				acceleration.x += speed * delta;	
@@ -164,8 +164,8 @@ THREE.PointerLockControls = function ( camera ) {
 		else if (velocity.z > 0) velocity.z = Math.max(-10, velocity.z ); 
 
 		if (velocity.x == 0);
-		else if (velocity.x < 0) velocity.x = Math.min(8, velocity.x ); 
-		else if (velocity.x > 0) velocity.x = Math.max(-8, velocity.x ); 
+		else if (velocity.x < 0) velocity.x = Math.min(10, velocity.x ); 
+		else if (velocity.x > 0) velocity.x = Math.max(-10, velocity.x ); 
 
 		camera.position.x += velocity.x;
 		camera.position.z += velocity.z;

@@ -59,8 +59,8 @@ finishedLoading = function (bufferList) {
 }
 
 updateAudio = function() {
-    this.subwayGain = Math.max((150 + camera.position.z) / 2200, .2);
-    gainNode[22].gain.value = this.subwayGain;
+    this.subwayGain = .5*(Math.max((150 + camera.position.z) / 2200, .2));
+    gainNode[22].gain.value = this.subwayGain*.75;
 
     //linearly interpolate between passenger story audio
     var pos = ( ( camera.position.x + 1300 ) / 2600 ) * 24;
