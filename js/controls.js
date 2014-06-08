@@ -119,23 +119,26 @@ THREE.PointerLockControls = function ( camera ) {
 		if ( scope.enabled === false ) return;
 
 		var delta = 0.4*(Date.now() - time);
+		var thisCameraZ = camera.position.z;
 
 		if ( moveForward ) {
-			if(camera.position.z < 1000){
-				velocity.z -= 0.08 * delta;
-			}
-			else{
-				velocity.z -= 0.15 * delta;	
-			}
+			camera.position.z += 0.0025 * (150 - thisCameraZ) * delta;
+			// if(camera.position.z < 1000){
+			// 	velocity.z -= 0.08 * delta;
+			// }
+			// else{
+			// 	velocity.z -= 0.15 * delta;	
+			// }
 		}
 
 		if ( moveBackward ) {
-			if(camera.position.z < 1000){
-				velocity.z += 0.08 * delta;
-			}
-			else{
-				velocity.z += 0.15 * delta;	
-			}
+			camera.position.z += 0.0005 * (2000 - thisCameraZ) * delta;
+			// if(camera.position.z < 1000){
+			// 	velocity.z += 0.08 * delta;
+			// }
+			// else{
+			// 	velocity.z += 0.15 * delta;	
+			// }
 		}			
 
 		if ( moveLeft ) {
@@ -168,12 +171,12 @@ THREE.PointerLockControls = function ( camera ) {
 		else if (velocity.x > 0) velocity.x = Math.max(-10, velocity.x ); 
 
 		camera.position.x += velocity.x;
-		camera.position.z += velocity.z;
+		// camera.position.z += velocity.z;
 		if(camera.position.x > 0) { camera.position.x = Math.min(camera.position.x, 1750);  }
 		if(camera.position.x < 0) { camera.position.x = Math.max(camera.position.x, -1750); } 
 		camera.position.z = Math.min(Math.max(camera.position.z, 150), 2200);
 
 		velocity.x *= .95;
-		velocity.z *= .9;
+		// velocity.z *= .9;
 	};
 };

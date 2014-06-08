@@ -35,7 +35,7 @@ var myPortName = '/dev/cu.usbmodemfd121';
 var options = {
 	baudrate: 9600,
 	parser: serialPort.parsers.readline('\r\n')
-}
+};
 
 // Once you've added the correct name for the Serial port, uncomment lines 41 - 51, then restart the server
 var myPort = new serialPort.SerialPort( myPortName, options );
