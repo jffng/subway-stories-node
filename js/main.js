@@ -1,12 +1,12 @@
 $(document).ready(function() {
-  $('body').addClass("loading");
-  $('#instructionsToggle').click(function() {
-    $('#instructions').toggle("slow", function(){
-      // body
-    });
-  });
+  // $('body').addClass("loading");
+  // $('#instructionsToggle').click(function() {
+  //   $('#instructions').toggle("slow", function(){
+  //     // body
+  //   });
+  // });
   init();    
-  initAudio();
+  // initAudio();
   animate();
 });
 
@@ -60,8 +60,8 @@ function addGraphics () {
     scene.add(passengers.object3D);
 
     for (var i = 0; i < 11; i++){
-      poles[i] = new Pole(i*750-1000, 120, 150, 700, 0x333333);
-      polesB[i] = new Pole(i*750-1500, 160, -100, 750, 0x121212);
+      poles[i] = new Pole(i*750-1000, 100, 150, 675, 0x333333);
+      polesB[i] = new Pole(i*750-1500, 140, -100, 725, 0x121212);
     }
 
     for(var i = 0; i < 6; i++){
@@ -72,7 +72,7 @@ function addGraphics () {
     var material = new THREE.MeshBasicMaterial({ color: 0x111111 });
     var tunnel = new THREE.Mesh( geometry, material );
     scene.add( tunnel );
-    tunnel.position.set( 0, 185, -102)
+    tunnel.position.set( 0, 155, -102)
 
     // LIGHTS
     var ambientLight = new THREE.AmbientLight(0x555555);
@@ -95,7 +95,7 @@ subwayCarLoader = function () {
     img.transparent = true;
     this.subwayMesh = new THREE.Mesh(new THREE.PlaneGeometry(3500, 397), img);
     scene.add(this.subwayMesh);
-    this.subwayMesh.position.y = -25;
+    // this.subwayMesh.position.set(0,  100000, 0);
 }
 
 subwayCarLoader.prototype.setPos = function(timer) {
@@ -206,7 +206,7 @@ passengerLoader = function (numPassengers) {
     var geometry = new THREE.PlaneGeometry(1200, 695);
     this.tile = new THREE.Mesh( geometry, img);
     scene.add(this.tile);
-    this.tile.position.set(num*1200, 185, -100); 
+    this.tile.position.set(num*1200, 155, -100); 
   }
 
   Background.prototype.setPos = function(timer, speed){
@@ -216,9 +216,16 @@ passengerLoader = function (numPassengers) {
   }
 
   function Pole(x,y,z,h,c) {
-    var geometry = new THREE.CubeGeometry( 120, h, 50 );
+    var geometry = new THREE.CubeGeometry( 100, h, 50 );
     var material = new THREE.MeshBasicMaterial( {color: c} );
-    this.cube = new THREE.Mesh( geometry, material );
+
+    var poleMaterial = new THREE.MeshBasicMaterial({ //CHANGED to MeshBasicMaterial
+          map:THREE.ImageUtils.loadTexture('img/pole-texture-flat.jpg')
+        });
+        img.map.needsUpdate = true; //ADDED
+        img.transparent = true;
+
+    this.cube = new THREE.Mesh( geometry, poleMaterial );
     scene.add(this.cube);
     this.cube.position.set(x, y, z);
   }
