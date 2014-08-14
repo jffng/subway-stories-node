@@ -30,7 +30,9 @@ wss.on('connection', function(ws){
 var serialPort = require('serialport');
 // Find the "comName" path that refers to the Arduino serial port connection
 // Replace this path with what's printed out in the 'comName:' of the terminal when you start the node app
-var myPortName = '/dev/cu.usbmodemfd121';
+
+
+var myPortName = 'COM3';
 
 var options = {
 	baudrate: 9600,
@@ -44,12 +46,16 @@ myPort.on('open', function() {
 	console.log('yay, serial port is open');
 });
 
+
 myPort.on('data', function(sensorVals){
 	if(mySocket){
 		mySocket.send(sensorVals);
 	}
 });
 
-// serialPort.list( function (error, ports) {
-// 	console.log(ports);
-// });
+/*
+ serialPort.list( function (error, ports) {
+ 	console.log(ports);
+ });
+*/
+// console.log(serialPort);

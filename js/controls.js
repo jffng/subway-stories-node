@@ -1,6 +1,8 @@
 THREE.PointerLockControls = function ( camera ) {
 	var zoom,vel;
 	var ws = new WebSocket('ws://localhost:8080');
+	var speed = 0;
+	var zoomSpeed = 0;
 
 	ws.onopen = function () {
 		console.log("web socket is open");
@@ -21,6 +23,7 @@ THREE.PointerLockControls = function ( camera ) {
 		if(zoom < 590) moveForward = true;
 		else moveForward = false;
 		speed = 7 * Math.abs( (vel-80) / 60000 - .005 );
+		//zoomSpeed = 
 
 		window.onmousedown = function(){
 			console.log(zoom);
@@ -122,45 +125,48 @@ THREE.PointerLockControls = function ( camera ) {
 		var thisCameraZ = camera.position.z;
 
 		if ( moveForward ) {
-			camera.position.z += 0.0025 * (150 - thisCameraZ) * delta;
-			// if(camera.position.z < 1000){
-			// 	velocity.z -= 0.08 * delta;
-			// }
-			// else{
-			// 	velocity.z -= 0.15 * delta;	
-			// }
+			// camera.position.z += 0.0025 * (150 - thisCameraZ) * delta;
+			if(camera.position.z < 500){
+				acceleration.z -= 0.005 * delta;
+			}
+			else{
+				acceleration.z -= 0.1 * delta;	
+			}
 		}
 
 		if ( moveBackward ) {
-			camera.position.z += 0.0005 * (2000 - thisCameraZ) * delta;
+			// camera.position.z += 0.0005 * (2000 - thisCameraZ) * delta;
+				acceleration.z += 0.1 * delta;
+
 			// if(camera.position.z < 1000){
-			// 	velocity.z += 0.08 * delta;
 			// }
 			// else{
-			// 	velocity.z += 0.15 * delta;	
+			// 	acceleration.z += 0.1 * delta;	
 			// }
 		}			
 
 		if ( moveLeft ) {
-			if(camera.position.z < 1000){
-				acceleration.x -= speed * delta;
+			if (speed){
+				acceleration.x -= speed * delta;				
 			}
 			else{
-				acceleration.x -= speed * delta;
+				acceleration.x -= .1 * delta;				
 			}
 		}
 
 		if ( moveRight ) {
-			if(camera.position.z < 1000){
-				acceleration.x += speed * delta;
+			if (speed){
+				acceleration.x += speed * delta;				
 			}
 			else{
-				acceleration.x += speed * delta;	
+				acceleration.x += .1 * delta;				
 			}
 		}		
 
 		velocity.x += acceleration.x;
+		velocity.z += acceleration.z;
 		acceleration.x *= 0;
+		acceleration.z *= 0;
 
 		if (velocity.z == 0);
 		else if (velocity.z < 0) velocity.z = Math.min(10, velocity.z ); 
@@ -171,12 +177,25 @@ THREE.PointerLockControls = function ( camera ) {
 		else if (velocity.x > 0) velocity.x = Math.max(-10, velocity.x ); 
 
 		camera.position.x += velocity.x;
-		// camera.position.z += velocity.z;
-		if(camera.position.x > 0) { camera.position.x = Math.min(camera.position.x, 1750);  }
-		if(camera.position.x < 0) { camera.position.x = Math.max(camera.position.x, -1750); } 
+		camera.position.z += velocity.z;
+		if(camera.position.x > 0) { 
+			camera.position.x = Math.min(camera.position.x, 1750);
+		}
+		
+		// if(camera.position.x === 1750) 	moveBackward = true;
+		// else 							moveBackward = false;
+
+		if(camera.position.x < 0) { 
+			camera.position.x = Math.max(camera.position.x, -1750); 
+
+		} 
+
+		// if(camera.position.x === -1750 && moveLeft === true) moveBackward = true;
+		// else 							moveBackward = false;
+
 		camera.position.z = Math.min(Math.max(camera.position.z, 150), 2200);
 
 		velocity.x *= .95;
-		// velocity.z *= .9;
+		velocity.z *= .95;
 	};
 };
