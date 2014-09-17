@@ -1,10 +1,10 @@
 $(document).ready(function() {
-  // $('body').addClass("loading");
-  // $('#instructionsToggle').click(function() {
-  //   $('#instructions').toggle("slow", function(){
-  //     // body
-  //   });
-  // });
+  $('body').addClass("loading");
+   $('#instructionsToggle').click(function() {
+    $('#instructions').toggle("slow", function(){
+       // body
+     });
+   });
   init();    
   // initAudio();
   animate();
@@ -233,7 +233,8 @@ passengerLoader = function (numPassengers) {
   Pole.prototype.setPos = function(timer, speed) {
     var delta = (Date.now() - timer);
     this.cube.position.x -= delta*speed;
-    if(this.cube.position.x < -4000) this.cube.position.x += 8250;
+	var positionCheck = Math.round(this.cube.position.x);
+    if(positionCheck < -4000) this.cube.position.x = 4250;
   }
 
   function onWindowResize() {

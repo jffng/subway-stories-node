@@ -23,7 +23,6 @@ THREE.PointerLockControls = function ( camera ) {
 		if(zoom < 590) moveForward = true;
 		else moveForward = false;
 		speed = 7 * Math.abs( (vel-80) / 60000 - .005 );
-		zoomSpeed = 
 
 		window.onmousedown = function(){
 			console.log(zoom);
@@ -130,7 +129,7 @@ THREE.PointerLockControls = function ( camera ) {
 				acceleration.z -= 0.005 * delta;
 			}
 			else{
-				acceleration.z -= 0.125 * delta;	
+				acceleration.z -= 0.1 * delta;	
 			}
 		}
 
