@@ -116,11 +116,11 @@ THREE.PointerLockControls = function ( camera ) {
 
 	};
 
-	this.update = function ( ) {
+	this.update = function (time) {
 
 		if ( scope.enabled === false ) return;
 
-		var delta = 0.4*(Date.now() - time);
+		var delta = 0.4*(time);
 		var thisCameraZ = camera.position.z;
 
 		if ( moveForward ) {
