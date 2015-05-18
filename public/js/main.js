@@ -1,8 +1,7 @@
 $(document).ready(function() {
-	$('body').addClass("loading");
-	
+	// $('body').addClass("loading");
 	init();    
-	initAudio();
+	// initAudio();
 	animate();
 });
 
@@ -57,10 +56,10 @@ function init() {
 
 	scene.add(passengers.object3D);
 
-	// for (var i = 0; i < 20; i++){
-	// 	poles[i] = new Pole(i*750, 100, 150, 675, 0x333333, 1000);
-	// 	polesB[i] = new Pole(i*750, 140, -100, 725, 0x121212, 1500);
-	// }
+	for (var i = 0; i < 20; i++){
+		poles[i] = new Pole(i*800, 100, 150, 675, 0x333333, 1000);
+		polesB[i] = new Pole(i*800, 140, -100, 725, 0x121212, 1500);
+	}
 
 	for(var i = 0; i < 6; i++){
 		background[i] = new Background(i);
@@ -89,21 +88,9 @@ function render (timestamp) {
 
 	controls.update(delta);
 
-	var seconds = timestamp / 1000;
-
-	if(seconds % 1.5 < .025){
-		poles.push(new Pole(5200, 140, 150, 725, 0x121212, 1500));
-		polesB.push(new Pole(5300, 140, -100, 725, 0x121212, 1500));
-	}
-
-	if(poles.length > 22){
-		poles.shift();
-		polesB.shift();
-	}
-
 	for(var i = 0; i < poles.length; i++){ 
-		poles[i].setPos(delta, 1.2);
-		polesB[i].setPos(delta, 1.2);
+		poles[i].setPos(delta, 14);
+		polesB[i].setPos(delta, 14);
 	}
 
 	for(var i = 0; i < background.length; i++){

@@ -139,7 +139,8 @@ var Background = function(num){
 
 Background.prototype.setPos = function(delta){
 	// console.log(delta);
-	this.tile.position.x -= delta * 0.75;
+	this.tile.position.x -= 12;
+
 	if(this.tile.position.x <= -14400) this.tile.position.x += 28800;
 }
 
@@ -165,6 +166,7 @@ var Pole = function(x,y,z,h,c, dist) {
 
 
 Pole.prototype.setPos = function (mytime, speed) {
-	var mySpeed = speed * 10;
-	this.cube.position.x -= mySpeed; 
+	this.cube.position.x -= speed; 
+
+	if (this.cube.position.x <= -8000) this.cube.position.x += 16000;
 }
