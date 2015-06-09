@@ -34,33 +34,50 @@ var initPort = function(portName){
 
 	var myPort = new serialPort.SerialPort( portName, options);
 	
-	myPort.on('open', function() {
+	myPort.open(function(err){
+		if (err) {
+			console.log("error: " + err);
+		} else {
+			console.log('yay, serial port is open.');
+			myPort.on("data", function() { 
+				console.log('data');
+			});
+		}
+	});
+
+	/* myPort.on('open', function() {
 		console.log('yay, serial port is open.');
 	});
 
 	myPort.on('data', function(sensorVals){
+		console.log(sensorVals);
 		if(mySocket){
 			mySocket.send(sensorVals);
+			console.log(sensorVals);
 		}
-	});
+	}); */
 
-	return myPort;
+	// return myPort;
 };
 
 var getPort = function(error, ports){
 	
-	if (ports[2] != undefined){
-		server.listen(8080);
-		console.log('App is listening on localhost:8080');
-		
-		var port = ports[2]['comName'];
-		initPort(port);
-	
-	} else {
-		server.listen(8080);
-		console.log('Port not found. Ensure the Subway Controller / Arduino is connected to a USB port.')
-	
+	var isArduinoConnected = false;
+
+	for(var i in ports){
+		if(ports[i]['comName'].indexOf('cu.usbmodem') != -1){
+			server.listen(8080);
+			console.log('App is listening on localhost:8080');
+			var port = ports[i]['comName'];
+			isArduinoConnected = true; 
+			initPort(port);
+		}
 	}
+
+	if(!isArduinoConnected){
+		console.log('Port not found. Ensure Arduino is connected to a USB port.');
+	}
+
 };
 
 serialPort.list(getPort);
