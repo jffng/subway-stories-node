@@ -1,10 +1,13 @@
-int sensorPin = A0;
+int zoomPin = A0;
+int velocityPin = A1;
 
 void setup(){
   Serial.begin(9600);
 }
 
 void loop(){
-  Serial.println(analogRead(sensorPin));
-  delay(30);
+	Serial.print(analogRead(zoomPin));
+	Serial.print(',');
+	Serial.println(analogRead(velocityPin));
+	delay(30);
 }
