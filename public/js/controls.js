@@ -10,19 +10,19 @@ THREE.PointerLockControls = function ( camera ) {
 
 	ws.onmessage = function(msg){
 		var sensorVals = msg.data.split(',');
-		// lefthand analog sensor value range: 370 - 890  
-		zoom = sensorVals[0];
-		// righthand analog sensor value range: 80 - 680
-		vel = sensorVals[1];
-		if(vel > 420) moveLeft = true;
+		// lefthand analog sensor value range: 754 - 283 
+		zoom = sensorVals[1];
+		// righthand analog sensor value range: 754 - 291
+		vel = sensorVals[0];
+		if(vel > 540) moveLeft = true;
 		else moveLeft = false;
-		if(vel < 340) moveRight = true;
+		if(vel < 500) moveRight = true;
 		else moveRight = false;
-		if(zoom > 670) moveBackward = true;
+		if(zoom > 540) moveBackward = true;
 		else moveBackward = false;
-		if(zoom < 590) moveForward = true;
+		if(zoom < 500) moveForward = true;
 		else moveForward = false;
-		speed = 7 * Math.abs( (vel-80) / 60000 - .005 );
+		speed = 7 * Math.abs( (vel-290) / 60000 - .003 );
 
 		window.onmousedown = function(){
 			console.log(zoom);

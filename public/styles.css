@@ -5,6 +5,7 @@ body {
 	margin: 0px;
 	overflow: hidden;
 	font-size:14px;
+	cursor: none;
 }
 
 a:link {color:#ffffff;font-style:italic;text-decoration:none;}      /* unvisited link */
