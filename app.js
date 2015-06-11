@@ -3,6 +3,8 @@ var express = require('express');
 var http = require('http');
 var app = express();
 var server = http.createServer(app);
+var util = require('util');
+var exec = require('child_process').exec;
 
 app.use("/", express.static(__dirname + "/public"));
 
@@ -39,25 +41,29 @@ var initPort = function(portName){
 			console.log("error: " + err);
 		} else {
 			console.log('yay, serial port is open.');
-			myPort.on("data", function() { 
-				console.log('data');
+			myPort.on("data", function(d) { 
+				//console.log(d);
+				if(mySocket) {
+					mySocket.send(d);
+				}
+			});
+
+			var restartChrome;
+
+			restartChrome = exec('osascript /Users/currents/Desktop/subway-stories/chrome.scpt', function(err,stdout,stderr){
+				// console.log('stdout: ' + stdout);
+				// console.log('stderr: ' + stderr);
+				if (err !== null) {
+					console.log('exec error: ' + error);
+				}
 			});
 		}
 	});
 
-	/* myPort.on('open', function() {
-		console.log('yay, serial port is open.');
+	myPort.on("close", function(err){
+		server.close();
+		console.log('Port closed: Arduino disconnected or error.');
 	});
-
-	myPort.on('data', function(sensorVals){
-		console.log(sensorVals);
-		if(mySocket){
-			mySocket.send(sensorVals);
-			console.log(sensorVals);
-		}
-	}); */
-
-	// return myPort;
 };
 
 var getPort = function(error, ports){

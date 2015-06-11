@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	// $('body').addClass("loading");
+	$('body').addClass("loading");
 	init();    
-	// initAudio();
+	initAudio();
 	animate();
 });
 
