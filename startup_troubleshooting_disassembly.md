@@ -35,13 +35,17 @@
 
 Package all together and ship to:
 
-*Jeff Ong ℅ ITP
-721 Broadway, 4th Floor
-New York, NY 10003*
+*Jeff Ong ℅ ITP*
+*721 Broadway, 4th Floor*
+*New York, NY 10003*
 
 #### Troubleshooting
 
-###### Controls
+###### Handles squeaking
+1. Open the box
+2. Pull handles slightly out.
+4. Add just a touch of WD40.
+5. Pl
 
 ###### 
 
