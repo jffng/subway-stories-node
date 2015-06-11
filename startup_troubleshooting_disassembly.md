@@ -35,9 +35,9 @@
 
 Package all together and ship to:
 
-###### Jeff Ong ℅ ITP
-###### 721 Broadway, 4th Floor
-###### New York, NY 10003
+*Jeff Ong ℅ ITP
+721 Broadway, 4th Floor
+New York, NY 10003*
 
 #### Troubleshooting
 
