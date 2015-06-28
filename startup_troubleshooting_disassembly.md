@@ -20,7 +20,7 @@
 
 4. Loosen the handles from their rods with the hex key. These can be packaged together.
 
-5. Unscrew the standoffs that limit the motion of the handles. Remove the bolts and package together with the standoffs.
+5. Unscrew the nuts holding the bolts that limit the motion of the handles. Remove the bolts and package together with the nuts.
 
 6. Bubble wrap the main box. The arduino and breadboard can stay inside the box.
 
