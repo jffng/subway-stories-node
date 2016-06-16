@@ -36,7 +36,7 @@ var initPort = function(portName){
 
 	var myPort = new serialPort.SerialPort( portName, options);
 	
-	myPort.open(function(err){
+	myPort.on("open", function(err){
 		if (err) {
 			console.log("error: " + err);
 		} else {
@@ -50,13 +50,13 @@ var initPort = function(portName){
 
 			var restartChrome;
 
-			restartChrome = exec('osascript /Users/currents/Desktop/subway-stories/chrome.scpt', function(err,stdout,stderr){
-				// console.log('stdout: ' + stdout);
-				// console.log('stderr: ' + stderr);
-				if (err !== null) {
-					console.log('exec error: ' + error);
-				}
-			});
+			// restartChrome = exec('osascript /Users/jeffrey.ong/Documents/OFF/subway-stories-node/chrome.scpt', function(err,stdout,stderr){
+			// 	// console.log('stdout: ' + stdout);
+			// 	// console.log('stderr: ' + stderr);
+			// 	if (err !== null) {
+			// 		console.log('exec error: ' + err);
+			// 	}
+			// });
 		}
 	});
 
@@ -71,10 +71,13 @@ var getPort = function(error, ports){
 	var isArduinoConnected = false;
 
 	for(var i in ports){
+        // console.log(ports[i]);
 		if(ports[i]['comName'].indexOf('cu.usbmodem') != -1){
+
 			server.listen(8080);
 			console.log('App is listening on localhost:8080');
 			var port = ports[i]['comName'];
+            console.log(port);
 			isArduinoConnected = true; 
 			initPort(port);
 		}
